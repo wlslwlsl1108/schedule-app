@@ -5,8 +5,12 @@ import com.scheduleapp.dto.ScheduleResponse;
 import com.scheduleapp.entity.Schedule;
 import com.scheduleapp.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +40,26 @@ public class ScheduleService {
     }
 
     // CRUD의 [R] -> 일정 전체 조회
+    @Transactional(readOnly = true)
+    public List<ScheduleResponse> findSchedules() {
+        List<Schedule> schedules = scheduleRepository.findAll(
+                Sort.by("createdAt").descending()
+        );
+        List<ScheduleResponse> dtos = new ArrayList<>();
+
+        for (Schedule schedule : schedules) {
+            ScheduleResponse scheduleResponse = new ScheduleResponse(
+                    schedule.getId(),
+                    schedule.getName(),
+                    schedule.getTitle(),
+                    schedule.getContent(),
+                    schedule.getCreatedAt(),
+                    schedule.getUpdatedAt()
+            );
+            dtos.add(scheduleResponse);
+        }
+        return dtos;
+    }
 
 
     // CRUD의 [R] -> 일정 단건 조회
