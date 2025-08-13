@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class ScheduleController {
@@ -26,7 +28,7 @@ public class ScheduleController {
 
     // CRUD의 [R] -> 일정 전체 조회 및 작성자명 조회
     @GetMapping("/schedules")
-    public ResponseEntity<ScheduleResponse> getSchedules(
+    public ResponseEntity<List<ScheduleResponse>> getSchedules(
             @RequestBody(required = false) String name
     ){
         if(name == null){
