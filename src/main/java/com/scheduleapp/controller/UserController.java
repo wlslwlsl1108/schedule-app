@@ -41,6 +41,13 @@ public class UserController {
 
 
     // CRUD의 [U] -> 유저 수정
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<UserResponse> updateUser(
+            @RequestBody UserResponse userrequest,
+            @PathVariable("userId") Long userId
+    ) {
+        return ResponseEntity.ok(userService.update(userId, userrequest));
+    }
 
 
     // CRUD의 [D] -> 유저 삭제

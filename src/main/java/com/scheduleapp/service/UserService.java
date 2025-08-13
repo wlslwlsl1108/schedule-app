@@ -57,6 +57,19 @@ public class UserService {
 
 
     // CRUD의 [U] -> 유저 수정
+    @Transactional
+    public UserResponse update(Long userId, UserRequest userRequest) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("해당하는 userId가 없습니다.")
+        );
+        user.updateEmail(userRequest.getEmail());
+
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail()
+        );
+    }
 
 
     // CRUD의 [D] -> 유저 삭제
