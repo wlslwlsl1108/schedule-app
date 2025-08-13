@@ -83,6 +83,22 @@ public class ScheduleService {
 
 
     // CRUD의 [R] -> 일정 단건 조회
+    @Transactional(readOnly = true)
+    public ScheduleResponse findSchedule(Long scheduleId) {
+
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
+                () -> new IllegalArgumentException("해당하는 scheduleId가 없습니다.")
+        );
+
+        return new ScheduleResponse(
+                schedule.getId(),
+                schedule.getName(),
+                schedule.getTitle(),
+                schedule.getContent(),
+                schedule.getCreatedAt(),
+                schedule.getUpdatedAt()
+        );
+    }
 
 
     // CRUD의 [U] -> 일정 수정
