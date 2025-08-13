@@ -1,0 +1,47 @@
+package com.scheduleapp.service;
+
+import com.scheduleapp.dto.ScheduleResponse;
+import com.scheduleapp.dto.UserRequest;
+import com.scheduleapp.dto.UserResponse;
+import com.scheduleapp.entity.User;
+import com.scheduleapp.repository.ScheduleRepository;
+import com.scheduleapp.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+
+@Service
+@RequiredArgsConstructor
+public class UserService {
+
+    // 레포지토리 의존성
+    private final UserRepository userRepository;
+    private final ScheduleRepository scheduleRepository;
+
+    // CRUD의 [C] -> 유저 생성(저장)
+    @Transactional
+    public UserResponse save(UserRequest request) {
+        User user = new User(request.getName(), request.getEmail());
+        User savedUser = userRepository.save(user);
+        return new UserResponse(
+                savedUser.getId(),
+                savedUser.getName(),
+                savedUser.getEmail()
+        );
+    }
+
+    // CRUD의 [R] -> 유저 전체 조회
+
+
+    // CRUD의 [R] -> 유저 단건 조회
+
+
+    // CRUD의 [U] -> 유저 수정
+
+
+    // CRUD의 [D] -> 유저 삭제
+
+
+
+}
