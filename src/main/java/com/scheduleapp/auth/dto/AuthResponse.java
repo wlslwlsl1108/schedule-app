@@ -5,9 +5,9 @@ import lombok.Getter;
 @Getter
 public class AuthResponse {
 
-    private final Long id;
+    private final String email;
 
-    public AuthResponse(Long id) {
-        this.id = id;
+    public AuthResponse(String email) {
+        this.email = email;
     }
 }

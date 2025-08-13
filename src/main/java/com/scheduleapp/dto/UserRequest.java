@@ -1,4 +1,4 @@
-package com.scheduleapp.dto;
+/*package com.scheduleapp.dto;
 
 import lombok.Getter;
 
@@ -6,4 +6,6 @@ import lombok.Getter;
 public class UserRequest {
     private String name;
     private String email;
+    private String password;
 }
+*/

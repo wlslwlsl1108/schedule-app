@@ -1,6 +1,7 @@
 package com.scheduleapp.controller;
 
-import com.scheduleapp.dto.UserRequest;
+import com.scheduleapp.auth.dto.AuthRequest;
+
 import com.scheduleapp.dto.UserResponse;
 import com.scheduleapp.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -40,10 +41,10 @@ public class UserController {
     // CRUD의 [U] -> 유저 수정
     @PutMapping("/users/{userId}")
     public ResponseEntity<UserResponse> updateUser(
-            @RequestBody UserRequest userrequest,
+            @RequestBody AuthRequest authRequest/*UserRequest userrequest*/,
             @PathVariable("userId") Long userId
     ) {
-        return ResponseEntity.ok(userService.update(userId, userrequest));
+        return ResponseEntity.ok(userService.update(userId, authRequest));
     }
 
     // CRUD의 [D] -> 유저 삭제

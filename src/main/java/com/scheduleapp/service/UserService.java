@@ -1,7 +1,8 @@
 package com.scheduleapp.service;
 
+import com.scheduleapp.auth.dto.AuthRequest;
 import com.scheduleapp.dto.ScheduleResponse;
-import com.scheduleapp.dto.UserRequest;
+
 import com.scheduleapp.dto.UserResponse;
 import com.scheduleapp.entity.User;
 import com.scheduleapp.repository.ScheduleRepository;
@@ -71,11 +72,11 @@ public class UserService {
 
     // CRUD의 [U] -> 유저 수정
     @Transactional
-    public UserResponse update(Long userId, UserRequest userRequest) {
+    public UserResponse update(Long userId, AuthRequest authRequest/*UserRequest userRequest*/) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("해당하는 userId가 없습니다.")
         );
-        user.updateEmail(userRequest.getEmail());
+        user.updateEmail(authRequest.getEmail());
 
         return new UserResponse(
                 user.getId(),
