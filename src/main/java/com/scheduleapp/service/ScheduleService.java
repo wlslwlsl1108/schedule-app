@@ -119,6 +119,13 @@ public class ScheduleService {
 
 
     // CRUD의 [D] -> 일정 삭제
+    @Transactional
+    public void delete(Long scheduleId) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
+                () -> new IllegalArgumentException("해당하는 scheduleId가 없습니다.")
+        );
+        scheduleRepository.delete(schedule);
+    }
 
 
 
