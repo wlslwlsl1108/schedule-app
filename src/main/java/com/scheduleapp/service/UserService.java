@@ -74,6 +74,14 @@ public class UserService {
 
 
     // CRUD의 [D] -> 유저 삭제
+    @Transactional
+    public void delete(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("해당하는 userId가 없습니다.")
+        );
+        scheduleRepository.deleteBySchedule(user);
+        userRepository.delete(user);
+    }
 
 
 

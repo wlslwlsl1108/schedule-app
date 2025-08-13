@@ -51,7 +51,13 @@ public class UserController {
 
 
     // CRUD의 [D] -> 유저 삭제
-
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<Void> deleteUser(
+            @PathVariable Long userId
+    ) {
+        userService.delete(userId);
+        return ResponseEntity.noContent().build();
+    }
 
 
 
