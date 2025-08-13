@@ -17,13 +17,14 @@ public class Schedule extends BaseEntity {  // 상속 받았으므로 createdAt,
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "User_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Schedule(String name, String title, String content) {
+    public Schedule(String name, String title, String content, User user) {
         this.name = name;
         this.title = title;
         this.content = content;
+        this.user = user;
     }
 
         public void updateContent(String title, String name){

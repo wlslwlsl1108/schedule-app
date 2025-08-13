@@ -1,6 +1,5 @@
 package com.scheduleapp.dto;
 
-import com.scheduleapp.entity.Schedule;
 import lombok.Getter;
 
 @Getter

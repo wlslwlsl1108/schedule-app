@@ -30,7 +30,9 @@ public class UserService {
         return new UserResponse(
                 savedUser.getId(),
                 savedUser.getName(),
-                savedUser.getEmail()
+                savedUser.getEmail(),
+                savedUser.getCreatedAt(),
+                savedUser.getUpdatedAt()
         );
     }
 
@@ -41,7 +43,12 @@ public class UserService {
         List<User> users = userRepository.findAll();
 
         return users.stream()
-                .map(m -> new UserResponse(m.getId(), m.getName(), m.getEmail()))
+                .map(m -> new UserResponse(
+                        m.getId(),
+                        m.getName(),
+                        m.getEmail(),
+                        m.getCreatedAt(),
+                        m.getUpdatedAt()))
                 .toList();
     }
 
@@ -53,7 +60,12 @@ public class UserService {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("해당하는 userId가 없습니다.")
         );
-        return new UserResponse(user.getId(), user.getName(), user.getEmail());
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getCreatedAt(),
+                user.getUpdatedAt());
     }
 
 
@@ -68,7 +80,9 @@ public class UserService {
         return new UserResponse(
                 user.getId(),
                 user.getName(),
-                user.getEmail()
+                user.getEmail(),
+                user.getCreatedAt(),
+                user.getUpdatedAt()
         );
     }
 
