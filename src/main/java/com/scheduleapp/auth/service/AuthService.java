@@ -5,8 +5,10 @@ import com.scheduleapp.auth.dto.AuthResponse;
 import com.scheduleapp.entity.User;
 import com.scheduleapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Objects;
 
@@ -30,11 +32,13 @@ public class AuthService {
     @Transactional(readOnly = true)
     public AuthResponse login(AuthRequest authRequest) {
         User user = userRepository.findByEmail(authRequest.getEmail()).orElseThrow(
-                () -> new IllegalArgumentException("없는 유저입니다.")
+                () -> new ResponseStatusException(
+                        HttpStatus.UNAUTHORIZED, "이메일이 틀렸습니다.")
         );
 
         if (!Objects.equals(authRequest.getPassword(), user.getPassword())){
-            throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED, "비밀번호가 틀렸습니다.");
         }
         return new AuthResponse(user.getEmail());
     }
