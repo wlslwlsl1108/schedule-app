@@ -59,4 +59,11 @@ public class ScheduleController {
 
 
     // CRUD의 [D] -> 일정 삭제
+    @DeleteMapping("/schedules/{schedulId}")
+    public ResponseEntity<Void> deleteSchedule(
+            @PathVariable Long scheduleId
+    ){
+        scheduleService.delete(scheduleId);
+        return ResponseEntity.noContent().build();
+    }
 }
