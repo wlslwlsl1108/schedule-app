@@ -22,7 +22,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final ScheduleRepository scheduleRepository;
 
-    // CRUD의 [C] -> 유저 생성(저장)
+   /* // CRUD의 [C] -> 유저 생성(저장)
     @Transactional
     public UserResponse save(UserRequest request) {
         User user = new User(request.getName(), request.getEmail());
@@ -34,7 +34,7 @@ public class UserService {
                 savedUser.getCreatedAt(),
                 savedUser.getUpdatedAt()
         );
-    }
+    }*/
 
     // CRUD의 [R] -> 유저 전체 조회
     @Transactional

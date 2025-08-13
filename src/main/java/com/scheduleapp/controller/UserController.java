@@ -14,13 +14,14 @@ public class UserController {
 
     private final UserService userService;
 
+    /*
     // CRUD의 [C] -> 유저 생성(저장)
     @PostMapping("/users")
     public ResponseEntity<UserResponse> saveUser(
             @RequestBody UserRequest request
     ) {
         return ResponseEntity.ok(userService.save(request));
-    }
+    }*/
 
     // CRUD의 [R] -> 유저 전체 조회
     @GetMapping("/users")
