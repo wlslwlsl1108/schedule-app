@@ -11,7 +11,6 @@ import com.scheduleapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,19 +24,20 @@ public class ScheduleService {
     // CRUD의 [C] -> 유저의 일정 생성(저장)
     @Transactional
     public ScheduleResponse save(ScheduleRequest scheduleRequest, Long userId) {
+
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("그런 userId의 user는 없어요.")
         );
         Schedule schedule = new Schedule(
-                scheduleRequest.getName(),
                 scheduleRequest.getTitle(),
                 scheduleRequest.getContent(),
                 user
         );
+
         Schedule savedSchedule = scheduleRepository.save(schedule);
+
         return new ScheduleResponse(
                 savedSchedule.getId(),
-                savedSchedule.getName(),
                 savedSchedule.getTitle(),
                 savedSchedule.getContent(),
                 savedSchedule.getCreatedAt(),
@@ -48,13 +48,14 @@ public class ScheduleService {
     // CRUD의 [R] -> 유저의 일정 전체 조회
     @Transactional(readOnly = true)
     public List<ScheduleResponse> findAll(Long userId) {
+
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("그런 userId의 user는 없어요.")
         );
 
         List<Schedule> users = scheduleRepository.findAllByUser(user);
         /* (
-                Sort.by("createdAt").descending()
+                Sort.by("createdAt").descending()  추후 추가해보기.
         );*/
         List<ScheduleResponse> dtos = new ArrayList<>();
 
@@ -62,7 +63,6 @@ public class ScheduleService {
             dtos.add(
                     new ScheduleResponse(
                             schedule.getId(),
-                            schedule.getName(),
                             schedule.getTitle(),
                             schedule.getContent(),
                             schedule.getCreatedAt(),
@@ -73,38 +73,16 @@ public class ScheduleService {
         return dtos;
     }
 
-    /*
-    // CRUD - "R (Read)"  => 작성자명으로 조회
-    public List<ScheduleResponse> findSchedulesName(String name) {
-        List<Schedule> schedules = scheduleRepository.findAllByUser(name, Sort.by("createdAt").descending());
-
-        List<ScheduleResponse> dtos = new ArrayList<>();
-
-        for (Schedule schedule : schedules) {
-            ScheduleResponse scheduleResponse = new ScheduleResponse(
-                    schedule.getId(),
-                    schedule.getName(),
-                    schedule.getTitle(),
-                    schedule.getContent(),
-                    schedule.getCreatedAt(),
-                    schedule.getUpdatedAt()
-            );
-            dtos.add(scheduleResponse);
-        }
-        return dtos;
-    }
-    */
-
     // CRUD의 [R] -> 유저의 일정 단건 조회
     @Transactional(readOnly = true)
     public ScheduleResponse findOne(Long userId, Long scheduleId) {
+
         Schedule schedule = scheduleRepository.findByUser_IdAndId(userId, scheduleId).orElseThrow(
                 () -> new IllegalArgumentException("그런 userId의 user는 없어요.")
         );
 
         return new ScheduleResponse(
                 schedule.getId(),
-                schedule.getName(),
                 schedule.getTitle(),
                 schedule.getContent(),
                 schedule.getCreatedAt(),
@@ -116,21 +94,19 @@ public class ScheduleService {
     // CRUD의 [U] -> 유저의 일정 수정
     @Transactional
     public ScheduleUpdateResponse update(Long userId, Long scheduleId, ScheduleUpdateRequest scheduleUpdateRequest) {
+
         Schedule schedule = scheduleRepository.findByUser_IdAndId(userId, scheduleId).orElseThrow(
                 () -> new IllegalArgumentException("해당하는 scheduleId가 없습니다.")
         );
-        /* schedule.updateContent(
-                scheduleUpdateRequest.getTitle(),
-                scheduleUpdateRequest.getName()
-                ); */
+
         schedule.updateContent(
-                scheduleUpdateRequest.getName(),
-                scheduleUpdateRequest.getTitle()
+                scheduleUpdateRequest.getTitle(),
+                scheduleUpdateRequest.getContent()
         );
 
         return new ScheduleUpdateResponse(
                 schedule.getId(),
-                schedule.getName(),
+                schedule.getContent(),
                 schedule.getTitle()
         );
     }
@@ -142,9 +118,7 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findByUser_IdAndId(userId, scheduleId).orElseThrow(
                 () -> new IllegalArgumentException("해당하는 scheduleId가 없습니다.")
         );
+
         scheduleRepository.delete(schedule);
     }
-
-
-
 }

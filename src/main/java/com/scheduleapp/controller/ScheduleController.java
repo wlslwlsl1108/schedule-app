@@ -8,7 +8,6 @@ import com.scheduleapp.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,7 +25,6 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleService.save(scheduleRequest, userId));
     }
 
-
     // CRUD의 [R] -> 유저의 일정 전체 조회
     @GetMapping("/users/{userId}/schedules")
     public ResponseEntity<List<ScheduleResponse>> getAllSchedules(
@@ -34,9 +32,7 @@ public class ScheduleController {
             @PathVariable Long userId
     ){
         return ResponseEntity.ok(scheduleService.findAll(userId));
-
     }
-
 
     // CRUD의 [R] -> 유저의 일정 단건 조회
     @GetMapping("/users/{userId}/schedules/{scheduleId}")
@@ -47,7 +43,6 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleService.findOne(userId, scheduleId));
     }
 
-
     // CRUD의 [U] -> 유저의 일정 수정
     @PutMapping("/users/{userId}/schedules/{scheduleId}")
     public ResponseEntity<ScheduleUpdateResponse> updateSchedule(
@@ -57,7 +52,6 @@ public class ScheduleController {
     ){
         return ResponseEntity.ok(scheduleService.update(userId, scheduleId, scheduleUpdateRequest));
     }
-
 
     // CRUD의 [D] -> 유저의 일정 삭제
     @DeleteMapping("/users/{userId}/schedules/{scheduleId}")

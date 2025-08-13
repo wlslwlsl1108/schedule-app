@@ -22,13 +22,11 @@ public class UserController {
         return ResponseEntity.ok(userService.save(request));
     }
 
-
     // CRUD의 [R] -> 유저 전체 조회
     @GetMapping("/users")
     public ResponseEntity<List<UserResponse>> getAllUsers() {
         return ResponseEntity.ok(userService.findAll());
     }
-
 
     // CRUD의 [R] -> 유저 단건 조회
     @GetMapping("/users/{userId}")
@@ -37,7 +35,6 @@ public class UserController {
     ) {
         return ResponseEntity.ok(userService.findById(userId));
     }
-
 
     // CRUD의 [U] -> 유저 수정
     @PutMapping("/users/{userId}")
@@ -48,7 +45,6 @@ public class UserController {
         return ResponseEntity.ok(userService.update(userId, userrequest));
     }
 
-
     // CRUD의 [D] -> 유저 삭제
     @DeleteMapping("/users/{userId}")
     public ResponseEntity<Void> deleteUser(
@@ -57,8 +53,4 @@ public class UserController {
         userService.delete(userId);
         return ResponseEntity.noContent().build();
     }
-
-
-
-
 }

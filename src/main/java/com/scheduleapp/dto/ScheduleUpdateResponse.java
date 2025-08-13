@@ -7,11 +7,11 @@ public class ScheduleUpdateResponse {
 
     private Long id;
     private String title;
-    private String name;
+    private String content;
 
-    public ScheduleUpdateResponse(Long id, String title, String name) {
+    public ScheduleUpdateResponse(Long id, String title, String content) {
         this.id = id;
         this.title = title;
-        this.name = name;
+        this.content = content;
     }
 }

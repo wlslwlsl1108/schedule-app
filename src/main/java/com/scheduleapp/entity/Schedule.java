@@ -12,7 +12,6 @@ public class Schedule extends BaseEntity {  // 상속 받았으므로 createdAt,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
     private String title;
     private String content;
 
@@ -20,16 +19,15 @@ public class Schedule extends BaseEntity {  // 상속 받았으므로 createdAt,
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Schedule(String name, String title, String content, User user) {
-        this.name = name;
+    public Schedule(String title, String content, User user) {
         this.title = title;
         this.content = content;
         this.user = user;
     }
 
-        public void updateContent(String title, String name){
+    public void updateContent(String title, String content){
         this.title = title;
-        this.name = name;
+        this.content = content;
     }
 
 }
