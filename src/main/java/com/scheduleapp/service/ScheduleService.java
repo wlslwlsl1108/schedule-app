@@ -2,6 +2,8 @@ package com.scheduleapp.service;
 
 import com.scheduleapp.dto.ScheduleRequest;
 import com.scheduleapp.dto.ScheduleResponse;
+import com.scheduleapp.dto.ScheduleUpdateRequest;
+import com.scheduleapp.dto.ScheduleUpdateResponse;
 import com.scheduleapp.entity.Schedule;
 import com.scheduleapp.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
@@ -102,6 +104,18 @@ public class ScheduleService {
 
 
     // CRUD의 [U] -> 일정 수정
+    @Transactional
+    public ScheduleUpdateResponse update(Long scheduleId, ScheduleUpdateRequest scheduleUpdateRequest) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
+                () -> new IllegalArgumentException("해당하는 scheduleId가 없습니다.")
+        );
+
+        return new ScheduleUpdateResponse(
+                schedule.getId(),
+                schedule.getName(),
+                schedule.getTitle()
+        );
+    }
 
 
     // CRUD의 [D] -> 일정 삭제
