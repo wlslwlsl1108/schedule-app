@@ -25,10 +25,9 @@ public class Schedule extends BaseEntity {  // 상속 받았으므로 createdAt,
         this.content = content;
     }
 
-    /*  수정 작성시 주석 풀기
         public void updateContent(String title, String name){
         this.title = title;
         this.name = name;
-    }*/
+    }
 
 }

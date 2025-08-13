@@ -29,9 +29,9 @@ public class ScheduleController {
     // CRUD의 [R] -> 일정 전체 조회 및 작성자명 조회
     @GetMapping("/schedules")
     public ResponseEntity<List<ScheduleResponse>> getSchedules(
-            @RequestBody(required = false) String name
+            @RequestParam(name = "name",required = false) String name
     ){
-        if(name == null){
+        if(name == null || name.isBlank()){
             return ResponseEntity.ok(scheduleService.findSchedules());
         } else {
             return ResponseEntity.ok(scheduleService.findSchedulesName(name));
@@ -40,7 +40,7 @@ public class ScheduleController {
 
 
     // CRUD의 [R] -> 일정 단건 조회
-    @GetMapping("/schedules/{schedulId}")
+    @GetMapping("/schedules/{scheduleId}")
     public ResponseEntity<ScheduleResponse> getSchedule(
             @PathVariable Long scheduleId
     ){
@@ -49,7 +49,7 @@ public class ScheduleController {
 
 
     // CRUD의 [U] -> 일정 수정
-    @PutMapping("/schedules/{schedulId}")
+    @PutMapping("/schedules/{scheduleId}")
     public ResponseEntity<ScheduleUpdateResponse> updateSchedule(
             @PathVariable Long scheduleId,
             @RequestBody ScheduleUpdateRequest scheduleUpdateRequest
@@ -59,7 +59,7 @@ public class ScheduleController {
 
 
     // CRUD의 [D] -> 일정 삭제
-    @DeleteMapping("/schedules/{schedulId}")
+    @DeleteMapping("/schedules/{scheduleId}")
     public ResponseEntity<Void> deleteSchedule(
             @PathVariable Long scheduleId
     ){

@@ -1,5 +1,6 @@
 package com.scheduleapp.service;
 
+import com.scheduleapp.ScheduleAppApplication;
 import com.scheduleapp.dto.ScheduleRequest;
 import com.scheduleapp.dto.ScheduleResponse;
 import com.scheduleapp.dto.ScheduleUpdateRequest;
@@ -109,6 +110,10 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalArgumentException("해당하는 scheduleId가 없습니다.")
         );
+        schedule.updateContent(
+                scheduleUpdateRequest.getTitle(),
+                scheduleUpdateRequest.getName()
+                );
 
         return new ScheduleUpdateResponse(
                 schedule.getId(),
