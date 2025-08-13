@@ -79,7 +79,7 @@ public class UserService {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("해당하는 userId가 없습니다.")
         );
-        scheduleRepository.deleteBySchedule(user);
+        scheduleRepository.deleteByUser(user);
         userRepository.delete(user);
     }
 
