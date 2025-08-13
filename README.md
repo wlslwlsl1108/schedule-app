@@ -49,6 +49,26 @@
 수정필요
 ![패키지 구조](./images/패키지구조.png)
 
+src/
+├─ main/
+├─ java/
+│   └─ com.scheduleapp.project
+│       ├─ auth              # 회원가입/로그인 (인증)
+│       │   ├─ controller    
+│       │   ├─ dto          
+│       │   └─ service      
+│       │
+│       ├─ common            # Filter 활용
+│       │   └─ filter
+│       │
+│       ├─ controller        # 요청/응답 처리
+│       ├─ dto               # 데이터 전달 객체
+│       ├─ entity            # JPA 엔티티 클래스
+│       ├─ repository        # DB 접근 계층
+│       └─ service           # 비즈니스 로직 계층
+│
+└─ resources/
+└─ application.yml           # 설정 파일
 ---
 
 ## ERD
