@@ -2,6 +2,8 @@ package com.scheduleapp.controller;
 
 import com.scheduleapp.dto.ScheduleRequest;
 import com.scheduleapp.dto.ScheduleResponse;
+import com.scheduleapp.dto.ScheduleUpdateRequest;
+import com.scheduleapp.dto.ScheduleUpdateResponse;
 import com.scheduleapp.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +49,13 @@ public class ScheduleController {
 
 
     // CRUD의 [U] -> 일정 수정
+    @PutMapping("/schedules/{schedulId}")
+    public ResponseEntity<ScheduleUpdateResponse> updateSchedule(
+            @PathVariable Long scheduleId,
+            @RequestBody ScheduleUpdateRequest scheduleUpdateRequest
+    ){
+        return ResponseEntity.ok(scheduleService.update(scheduleId, scheduleUpdateRequest));
+    }
 
 
     // CRUD의 [D] -> 일정 삭제
