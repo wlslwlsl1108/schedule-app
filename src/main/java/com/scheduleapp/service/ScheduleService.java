@@ -61,6 +61,26 @@ public class ScheduleService {
         return dtos;
     }
 
+    // CRUD - "R (Read)"  => 작성자명으로 조회
+    public List<ScheduleResponse> findSchedulesName(String name) {
+        List<Schedule> schedules = scheduleRepository.findByName(name, Sort.by("createdAt").descending());
+
+        List<ScheduleResponse> dtos = new ArrayList<>();
+
+        for (Schedule schedule : schedules) {
+            ScheduleResponse scheduleResponse = new ScheduleResponse(
+                    schedule.getId(),
+                    schedule.getName(),
+                    schedule.getTitle(),
+                    schedule.getContent(),
+                    schedule.getCreatedAt(),
+                    schedule.getUpdatedAt()
+            );
+            dtos.add(scheduleResponse);
+        }
+        return dtos;
+    }
+
 
     // CRUD의 [R] -> 일정 단건 조회
 
