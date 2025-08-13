@@ -5,10 +5,7 @@ import com.scheduleapp.dto.UserResponse;
 import com.scheduleapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +32,12 @@ public class UserController {
 
 
     // CRUD의 [R] -> 유저 단건 조회
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<UserResponse> getUser(
+            @PathVariable Long userId
+    ) {
+        return ResponseEntity.ok(userService.findById(userId));
+    }
 
 
     // CRUD의 [U] -> 유저 수정

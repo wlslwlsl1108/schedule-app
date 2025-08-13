@@ -45,8 +45,15 @@ public class UserService {
     }
 
 
-
     // CRUD의 [R] -> 유저 단건 조회
+    @Transactional(readOnly = true)
+    public UserResponse findById(Long userId) {
+
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("해당하는 userId가 없습니다.")
+        );
+        return new UserResponse(user.getId(), user.getName(), user.getEmail());
+    }
 
 
     // CRUD의 [U] -> 유저 수정
