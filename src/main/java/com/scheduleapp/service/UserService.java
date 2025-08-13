@@ -9,6 +9,7 @@ import com.scheduleapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class UserService {
 
 
     // CRUD의 [D] -> 유저 삭제
+
 
 
 
