@@ -47,7 +47,7 @@
 
 ## 패키지 구조
 수정필요
-![패키지 구조](./docs/images/패키지구조.png)
+![패키지 구조](./docs/images/package-structure.png)
 
   src/
    ├─ main/
