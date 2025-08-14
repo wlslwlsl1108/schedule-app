@@ -46,28 +46,20 @@
 ---
 
 ## 패키지 구조
-수정필요
+아래 사진은 프로젝트 패키지 구조 입니다.
 ![패키지 구조](./docs/images/package-structure.png)
 
 ---
 
 ## ERD
-아래 사진은 프로젝트의 ERD 입니다. 수정필요
+아래 사진은 프로젝트의 ERD 입니다. 
 ![ERD](./docs/images/erd.png)
 
 ---
 
 ## API 명세서
-- 자세한 내용은 아래 파일로 확인가능합니다. (pdf 파일 첨부 예정)
-
-| 기능                      | Method | URL                          | Request                                                                                                 | Response                                                                                                                                                                                        |
-|---------------------------|--------|------------------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 일정 생성하기             | POST   | `/schedules`                 | ```json { "title": "string", "content": "string", "name": "string", "password": "string" } ```          | **200 OK**<br>```json { "id": Long, "title": "string", "content": "string", "name": "string", "createdAt": "datetime", "updatedAt": "datetime" } ```                                            |
-| 일정 전체 조회하기        | GET    | `/schedules`                 | -                                                                                                       | **200 OK**<br>```json [ { "id": Long, "title": "string", "content": "string", "name": "string", "createdAt": "datetime", "updatedAt": "datetime" } ] ```<br>없으면 `[]`                            |
-| 일정 단건 조회하기        | GET    | `/schedules/{scheduleId}`    | PathVariable: `scheduleId`                                                                              | **200 OK**<br>```json { "id": Long, "title": "string", "content": "string", "name": "string", "createdAt": "datetime", "updatedAt": "datetime" } ```<br>**500 Internal Server Error**: 해당 일정 없음 |
-| 일정 제목, 이름 수정하기 (덮어쓰기) | PUT    | `/schedules/{scheduleId}`    | PathVariable: `scheduleId`<br>```json { "title": "string", "name": "string", "password": "string" } ``` | **200 OK**<br>```json { "id": Long, "title": "string", "name": "string" } ```<br>**500 Internal Server Error**: 해당 일정 없음 <br>**400 Bad Request**: 비밀번호 불일치                                      |
-| 일정 삭제하기             | DELETE | `/schedules/{scheduleId}`    | PathVariable: `scheduleId`<br>```json { "password": "string" } ```                                      | **200 OK**<br>```json { "message": "삭제 완료" } ```<br>**500 Internal Server Error**: 해당 일정 없음 <br>**400 Bad Request**: 비밀번호 불일치                                                                                          |
-
+자세한 내용은 아래 파일로 확인가능합니다. (pdf 파일 첨부)
+[API 명세서 (PDF)](./docs/api/API-schedule.pdf)
 
 ---
 
