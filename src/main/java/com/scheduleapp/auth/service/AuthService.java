@@ -22,6 +22,7 @@ public class AuthService {
     @Transactional
     public void signup(AuthRequest authRequest) {
         User user = new User(
+                authRequest.getName(),
                 authRequest.getEmail(),
                 authRequest.getPassword()
         );
@@ -40,7 +41,7 @@ public class AuthService {
             throw new ResponseStatusException(
                     HttpStatus.UNAUTHORIZED, "비밀번호가 틀렸습니다.");
         }
-        return new AuthResponse(user.getEmail());
+        return new AuthResponse(user.getName(),user.getEmail());
     }
 
 }

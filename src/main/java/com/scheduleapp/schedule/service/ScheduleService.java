@@ -106,8 +106,8 @@ public class ScheduleService {
 
         return new ScheduleUpdateResponse(
                 schedule.getId(),
-                schedule.getContent(),
-                schedule.getTitle()
+                schedule.getTitle(),
+                schedule.getContent()
         );
     }
 
