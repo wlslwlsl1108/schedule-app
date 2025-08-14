@@ -6,11 +6,11 @@
 ---
 
 ## 목차
-- [프로젝트 개요](#프로젝트_개요)
-- [기술 스택](#기술_스택)
-- [패키지 구조](#패키지_구조)
+- [프로젝트 개요](#프로젝트-개요)
+- [기술 스택](#기술-스택)
+- [패키지 구조](#패키지-구조)
 - [ERD](#ERD)
-- [API 명세서](#API_명세서)
+- [API 명세서](#API-명세서)
 - [lv1 ~ lv4 요약](#lv1--lv4-요약)
 - [클래스별 역할 및 기능](#클래스별-역할-및-기능)
 
@@ -47,28 +47,30 @@
 
 ## 패키지 구조
 수정필요
-![패키지 구조](./images/패키지구조.png)
+![패키지 구조](./docs/images/패키지구조.png)
 
-src/
-├─ main/
-├─ java/
-│   └─ com.scheduleapp.project
-│       ├─ auth              # 회원가입/로그인 (인증)
-│       │   ├─ controller    
-│       │   ├─ dto          
-│       │   └─ service      
-│       │
-│       ├─ common            # Filter 활용
-│       │   └─ filter
-│       │
-│       ├─ controller        # 요청/응답 처리
-│       ├─ dto               # 데이터 전달 객체
-│       ├─ entity            # JPA 엔티티 클래스
-│       ├─ repository        # DB 접근 계층
-│       └─ service           # 비즈니스 로직 계층
-│
-└─ resources/
-└─ application.yml           # 설정 파일
+  src/
+   ├─ main/
+   ├─ java/
+   │   └─ com.scheduleapp.project
+   │       ├─ auth              # 회원가입/로그인 (인증)
+   │       │    ├─ controller    
+   │       │    ├─ dto          
+   │       │    └─ service      
+   │       │
+   │       ├─ common            # Filter 활용
+   │       │    └─ filter
+   │       │
+   │       └─ schedule
+   │            ├─ controller   # 요청/응답 처리
+   │            ├─ dto          # 데이터 전달 객체
+   │            ├─ entity       # JPA 엔티티 클래스
+   │            ├─ repository   # DB 접근 계층
+   │            └─ service      # 비즈니스 로직 계층 
+   │
+   └─ resources/
+   └─ application.yml           # 설정 파일
+
 ---
 
 ## ERD
@@ -78,6 +80,7 @@ src/
 ---
 
 ## API 명세서
+- 자세한 내용은 아래 파일로 확인가능합니다. (pdf 파일 첨부 예정)
 
 | 기능                      | Method | URL                          | Request                                                                                                 | Response                                                                                                                                                                                        |
 |---------------------------|--------|------------------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -138,13 +141,20 @@ src/
 
 [**controller**]
 - 클라이언트 요청을 받아 Service 계층에 전달/응답 반환
-- API 제공 (CRUD) 
-  -> schedule로 예시
-    - `POST /schedules` : 일정 생성
-    - `GET /schedules` : 전체 일정 조회
-    - `GET /schedules/{scheduleId}` : 단건 일정 조회
-    - `PUT /schedules/{scheduleId}` : 일정 수정
-    - `DELETE /schedules/{scheduleId}` : 일정 삭제
+- API 제공 (CRUD)
+    - `POST   /signup`                          : 회원가입
+    - `POST   /login`                           : 로그인(세션 발급, 화이트리스트)
+
+    - `GET    /users`                           : 유저 전체 조회
+    - `GET    /users/{userId}`                  : 유저 단건 조회
+    - `PUT    /users/{userId}`                  : 유저 수정(이메일)
+    - `DELETE /users/{userId}`                  : 유저 삭제
+
+    - `POST   /users/{userId}/schedules`                    : 일정 생성
+    - `GET    /users/{userId}/schedules`                    : 일정 전체 조회
+    - `GET    /users/{userId}/schedules/{scheduleId}`       : 일정 단건 조회
+    - `PUT    /users/{userId}/schedules/{scheduleId}`       : 일정 수정
+    - `DELETE /users/{userId}/schedules/{scheduleId}`       : 일정 삭제
 
 
 [**dto**]
