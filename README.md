@@ -49,33 +49,11 @@
 수정필요
 ![패키지 구조](./docs/images/package-structure.png)
 
-  src/
-   ├─ main/
-   ├─ java/
-   │   └─ com.scheduleapp.project
-   │       ├─ auth              # 회원가입/로그인 (인증)
-   │       │    ├─ controller    
-   │       │    ├─ dto          
-   │       │    └─ service      
-   │       │
-   │       ├─ common            # Filter 활용
-   │       │    └─ filter
-   │       │
-   │       └─ schedule
-   │            ├─ controller   # 요청/응답 처리
-   │            ├─ dto          # 데이터 전달 객체
-   │            ├─ entity       # JPA 엔티티 클래스
-   │            ├─ repository   # DB 접근 계층
-   │            └─ service      # 비즈니스 로직 계층 
-   │
-   └─ resources/
-   └─ application.yml           # 설정 파일
-
 ---
 
 ## ERD
 아래 사진은 프로젝트의 ERD 입니다. 수정필요
-![ERD](images/ERD_1.png)
+![ERD](./docs/images/erd.png)
 
 ---
 
