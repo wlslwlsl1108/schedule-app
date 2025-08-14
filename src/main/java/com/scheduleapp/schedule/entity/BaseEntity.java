@@ -9,12 +9,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 @Getter
-@MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+@MappedSuperclass                                  // 상속받는 엔터티에 컬럼만 전달
+@EntityListeners(AuditingEntityListener.class)     // JPA Auditing 활성화
 public abstract class BaseEntity {
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column(updatable = false)                     // 생성 시에만 값 설정
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
 

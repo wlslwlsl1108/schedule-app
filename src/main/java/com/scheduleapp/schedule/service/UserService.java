@@ -16,18 +16,18 @@ import java.util.List;
 public class UserService {
 
     // 레포지토리 의존성
-    private final UserRepository userRepository;
-    private final ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;            // 유저 저장소
+    private final ScheduleRepository scheduleRepository;    // 일정 저장소
 
     // CRUD의 [C] -> 유저 생성(저장)은 auth에서 진행되므로 삭제
     // CRUD의 [R] -> 유저 전체 조회
     @Transactional
-    public List<UserResponse> findAll() {
+    public List<UserResponse> findAll() {                   // 모든 유저 조회
 
         List<User> users = userRepository.findAll();
 
         return users.stream()
-                .map(m -> new UserResponse(
+                .map(m -> new UserResponse(            // 엔티티 -> DTO 변환
                         m.getId(),
                         m.getName(),
                         m.getEmail(),

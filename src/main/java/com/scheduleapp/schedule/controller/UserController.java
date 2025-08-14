@@ -1,6 +1,6 @@
 package com.scheduleapp.schedule.controller;
 
-import com.scheduleapp.auth.dto.AuthRequest;
+import com.scheduleapp.auth.dto.AuthRequest;               // 이메일, 비밀번호  -> 여기서는 이메일만 사용
 import com.scheduleapp.schedule.dto.UserResponse;
 import com.scheduleapp.schedule.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class UserController {
     // CRUD의 [U] -> 유저 수정
     @PutMapping("/users/{userId}")
     public ResponseEntity<UserResponse> updateUser(
-            @RequestBody AuthRequest authRequest/*UserRequest userrequest*/,
+            @RequestBody AuthRequest authRequest,      // 이메일만 사용 (비밀번호는 무시)
             @PathVariable("userId") Long userId
     ) {
         return ResponseEntity.ok(userService.update(userId, authRequest));
