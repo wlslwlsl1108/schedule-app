@@ -2,8 +2,8 @@ package com.scheduleapp.auth.service;
 
 import com.scheduleapp.auth.dto.AuthRequest;
 import com.scheduleapp.auth.dto.AuthResponse;
-import com.scheduleapp.entity.User;
-import com.scheduleapp.repository.UserRepository;
+import com.scheduleapp.schedule.entity.User;
+import com.scheduleapp.schedule.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

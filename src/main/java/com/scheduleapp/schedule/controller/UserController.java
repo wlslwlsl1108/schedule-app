@@ -1,9 +1,8 @@
-package com.scheduleapp.controller;
+package com.scheduleapp.schedule.controller;
 
 import com.scheduleapp.auth.dto.AuthRequest;
-
-import com.scheduleapp.dto.UserResponse;
-import com.scheduleapp.service.UserService;
+import com.scheduleapp.schedule.dto.UserResponse;
+import com.scheduleapp.schedule.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +14,7 @@ public class UserController {
 
     private final UserService userService;
 
-    /*
-    // CRUD의 [C] -> 유저 생성(저장)
-    @PostMapping("/users")
-    public ResponseEntity<UserResponse> saveUser(
-            @RequestBody UserRequest request
-    ) {
-        return ResponseEntity.ok(userService.save(request));
-    }*/
-
+    // CRUD의 [C] 는 auth에서 처리되므로 삭제
     // CRUD의 [R] -> 유저 전체 조회
     @GetMapping("/users")
     public ResponseEntity<List<UserResponse>> getAllUsers() {

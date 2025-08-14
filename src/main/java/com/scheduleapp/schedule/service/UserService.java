@@ -1,17 +1,13 @@
-package com.scheduleapp.service;
+package com.scheduleapp.schedule.service;
 
 import com.scheduleapp.auth.dto.AuthRequest;
-import com.scheduleapp.dto.ScheduleResponse;
-
-import com.scheduleapp.dto.UserResponse;
-import com.scheduleapp.entity.User;
-import com.scheduleapp.repository.ScheduleRepository;
-import com.scheduleapp.repository.UserRepository;
+import com.scheduleapp.schedule.dto.UserResponse;
+import com.scheduleapp.schedule.entity.User;
+import com.scheduleapp.schedule.repository.ScheduleRepository;
+import com.scheduleapp.schedule.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-
 import java.util.List;
 
 
@@ -23,20 +19,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final ScheduleRepository scheduleRepository;
 
-   /* // CRUD의 [C] -> 유저 생성(저장)
-    @Transactional
-    public UserResponse save(UserRequest request) {
-        User user = new User(request.getName(), request.getEmail());
-        User savedUser = userRepository.save(user);
-        return new UserResponse(
-                savedUser.getId(),
-                savedUser.getName(),
-                savedUser.getEmail(),
-                savedUser.getCreatedAt(),
-                savedUser.getUpdatedAt()
-        );
-    }*/
-
+    // CRUD의 [C] -> 유저 생성(저장)은 auth에서 진행되므로 삭제
     // CRUD의 [R] -> 유저 전체 조회
     @Transactional
     public List<UserResponse> findAll() {
@@ -97,8 +80,4 @@ public class UserService {
         scheduleRepository.deleteByUser(user);
         userRepository.delete(user);
     }
-
-
-
-
 }

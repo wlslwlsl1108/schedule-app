@@ -1,6 +1,6 @@
-package com.scheduleapp.repository;
+package com.scheduleapp.schedule.repository;
 
-import com.scheduleapp.entity.User;
+import com.scheduleapp.schedule.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

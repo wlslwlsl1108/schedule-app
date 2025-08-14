@@ -1,13 +1,13 @@
-package com.scheduleapp.service;
+package com.scheduleapp.schedule.service;
 
-import com.scheduleapp.dto.ScheduleRequest;
-import com.scheduleapp.dto.ScheduleResponse;
-import com.scheduleapp.dto.ScheduleUpdateRequest;
-import com.scheduleapp.dto.ScheduleUpdateResponse;
-import com.scheduleapp.entity.Schedule;
-import com.scheduleapp.entity.User;
-import com.scheduleapp.repository.ScheduleRepository;
-import com.scheduleapp.repository.UserRepository;
+import com.scheduleapp.schedule.dto.ScheduleRequest;
+import com.scheduleapp.schedule.dto.ScheduleResponse;
+import com.scheduleapp.schedule.dto.ScheduleUpdateRequest;
+import com.scheduleapp.schedule.dto.ScheduleUpdateResponse;
+import com.scheduleapp.schedule.entity.Schedule;
+import com.scheduleapp.schedule.entity.User;
+import com.scheduleapp.schedule.repository.ScheduleRepository;
+import com.scheduleapp.schedule.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
