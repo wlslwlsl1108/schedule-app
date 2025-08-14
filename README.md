@@ -47,6 +47,8 @@
 
 ## 패키지 구조
 아래 사진은 프로젝트 패키지 구조 입니다.
+
+
 ![패키지 구조](./docs/images/package-structure.png)
 
 ---
@@ -59,7 +61,7 @@
 
 ## API 명세서
 자세한 내용은 아래 파일로 확인가능합니다. (pdf 파일 첨부)
-[API 명세서 (PDF)](./docs/api/API-schedule.pdf)
+-[API 명세서 (PDF)](docs/api/API-schedule.pdf)
 
 ---
 
